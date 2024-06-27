@@ -1,96 +1,31 @@
 {% extends 'main.html'%}
 {% block title %} <title> Home page </title> {% endblock %}
 {% block content%}
-
+{% load static %}
+{% include 'mininav.html' %}
   <style>
-
-    .cards{
-      display: flex;
-       margin-top: 150px;
-      justify-content: center; /* Center items horizontally */
-      align-items: center; /* Center items vertically */
-
-
-    }
-    .card{
-      margin-top: 100px;
-      justify-content: center;
-      align-items: center;
-      margin-left: 30px;
-    }
 
 
   </style>
-  <body>
+<div class="cards">
+  {% for item in items%}
 
-    <cards>
-    <div class="cards">
        <div class="card" style="width: 18rem;">
-  <img src=logo.png class="card-img-top" alt="...">
+  <img src="{% static 'images/logo.png'%}" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">product name</h5>
-    <p class="card-text">short description</p>
+    <h5 class="card-title" >{{item.name}}</h5>
+    <p class="card-text">{{item.description}}</p>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">price</li>
-    <li class="list-group-item">A size </li>
-
+    <li class="list-group-item">Price: {{item.price}}</li>
+    <li class="list-group-item">Size: {{item.size}} </li>
   </ul>
   <div class="card-body">
     <a href="#" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;"> See More</button></a>
-
   </div>
-</div>
-<div class="card" style="width: 18rem;">
-  <img src= logo.png class="card-img-top" alt="dress">
-  <div class="card-body">
-    <h5 class="card-title">product name</h5>
-    <p class="card-text">short description</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">price</li>
-    <li class="list-group-item">A size </li>
-
-  </ul>
-  <div class="card-body">
-       <a href="#" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;"> See More</button></a>
-
-  </div>
-</div>
-<div class="card" style="width: 18rem;">
-  <img src= logo.png class="card-img-top" alt="dress">
-  <div class="card-body">
-    <h5 class="card-title">product name</h5>
-    <p class="card-text">short description</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">price</li>
-    <li class="list-group-item">A size </li>
-
-  </ul>
-  <div class="card-body">
-       <a href="#" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;"> See More</button></a>
-
-  </div>
+       </div>
+  {% endfor %}
 </div>
 
-   <div class="card" style="width: 18rem;">
-  <img src= logo.png class="card-img-top" alt="dress">
-  <div class="card-body">
-    <h5 class="card-title">product name</h5>
-    <p class="card-text">short short description</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">price</li>
-    <li class="list-group-item">A size </li>
 
-  </ul>
-  <div class="card-body">
-        <a href="#" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;"> See More</button></a>
-
-     </div>
-   </div>
-    </div>
-    </cards>
-  </body>
-{%endblock%}
+   {%endblock%}

@@ -1,141 +1,4 @@
-
-<style>
-
-    .navbar navbar-expand-lg bg-body-tertiary {
-      width: 100%;
-      position: fixed;
-      top: 0;
-      z-index: 1000; /* Ensure it stays above other content */
-    }
-    .d-flex {
-      margin-left: 50px;
-      width: 50%;
-      height: 60px;
-      margin-right: 25px;
-    }
-    .form-control {
-      border: 2px;
-
-      border-style: solid;
-      border-bottom-color: red;
-      border-top-color: rgb(40, 8, 129);
-    }
-    .nav-item {
-      display: flex;
-      margin-top: 0px;
-      line-height: 0px;
-      padding: 4px;
-    }
-
-    .form-control:focus {
-      outline: 1px solid rgb(75, 73, 73);
-      box-shadow: none;
-    }
-    .container-fluid {
-      background-color: rgb(236, 233, 226);
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000; /* Ensure it stays above other content */
-      height : 120px;
-    }
-    .search-button {
-      border-style: none;
-      background-color: rgba(236, 233, 226, 0.89);
-    }
-    .mini-navbar {
-      position: fixed;
-      display: flex;
-      overflow: hidden;
-      background-color: white;
-      font-family: Arial;
-      margin-top: -50px;
-
-      border-radius: 2px;
-      justify-content: center; /* Center items horizontally */
-      align-items: center; /* Center items vertically */
-      width: 100%;
-      padding: 10px ; /* Padding */
-      z-index: 999; /* Slightly below the main navbar */
-
-
-    }
-
-    /* Links inside the navbar */
-    .mini-navbar a {
-      float: left;
-      font-size: 16px;
-      color: rgb(40, 8, 129);
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-
-
-    }
-
-    /* The mydropdown container */
-    .mydropdown {
-      float: left;
-      overflow: hidden;
-    }
-
-    /* mydropdown button */
-    .mydropdown .mydropbtn {
-      font-size: 16px;
-      border: none;
-      outline: none;
-      color: rgb(40, 8, 129);
-      padding: 14px 16px;
-      background-color: inherit;
-      font-family: inherit; /* Important for vertical align on mobile phones */
-      margin: 0; /* Important for vertical align on mobile phones */
-    }
-
-    /* Add a red background color to navbar links on hover */
-    .mini-navbar a:hover,
-    .mydropdown:hover .mydropbtn {
-      background-color: rgba(236, 233, 226, 0.89);
-       border-radius: 4px;
-    }
-
-    /* mydropdown content (hidden by default) */
-    .mydropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-    }
-
-    /* Links inside the mydropdown */
-    .mydropdown-content a {
-      float: none;
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
-      text-align: left;
-    }
-
-    /* Add a grey background color to mydropdown links on hover */
-    .mydropdown-content a:hover {
-      background-color: #ddd;
-      flex: 1; /* allows each column to grow equally */
-      max-width: 40%;
-      box-sizing: border-box; /* includes padding and border in the element's total width and height */
-      text-align: center;
-    }
-
-    /* Show the mydropdown menu on hover */
-    .mydropdown:hover .mydropdown-content {
-      display: flex;
-      flex-wrap: wrap;
-      max-width: 35%;
-      position: fixed;
-    }
-</style>
+{% load static %}
 
 <body>
     <div>
@@ -153,18 +16,18 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a href="{% url 'home' %}"> <img src="./logo.png" alt="logo" width="200px" /> </a>
+            <a href="{% url 'home' %}"> <img src="{% static 'images/logo.png'%}" alt="logo" width="200px" /> </a>
 
 
             <form class="d-flex" role="search">
-              <input
+              <input name="q"
                 class="form-control me-2"
                 type="search"
                 placeholder=" search"
                 aria-label="Search"
               />
 
-              <button type="button" class="search-button">
+              <button type="submit" class="search-button">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="26"
@@ -211,7 +74,7 @@
                     d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"
                   />
                 </svg>
-                <a class="nav-link active" aria-current="page" href="#"> Favourites</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'favourites' %}"> Favourites</a>
               </li>
               <li class="nav-item">
                 <svg
@@ -226,7 +89,7 @@
                     d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"
                   />
                 </svg>
-                <a class="nav-link active" aria-current="page" href="#"> Cart </a>
+                <a class="nav-link active" aria-current="page" href="{% url 'cart' %}"> Cart </a>
               </li>
               <li class="nav-item">
                 <svg
@@ -244,7 +107,7 @@
                     d="M3.75 0a1 1 0 0 0-.8.4L.1 4.2a.5.5 0 0 0-.1.3V15a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4.5a.5.5 0 0 0-.1-.3L13.05.4a1 1 0 0 0-.8-.4zm0 1H7.5v3h-6zM8.5 4V1h3.75l2.25 3zM15 5v10H1V5z"
                   />
                 </svg>
-                <a class="nav-link active" aria-current="page" href="#">
+                <a class="nav-link active" aria-current="page" href="{% url 'charity' %}">
                   Charity
                 </a>
               </li>
@@ -253,153 +116,6 @@
         </div>
       </nav>
     </div>
-    <div class="mini-navbar">
-      <div class="mydropdown">
-        <button class="mydropbtn">
-              Women
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="mydropdown-content">
-          <a href="#">Women</a>
-          <a href="#">Men</a>
-          <a href="#">Children</a>
-        </div>
-      </div>
-      <div class="mydropdown">
-        <button class="mydropbtn">
-              Men
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="mydropdown-content">
-          <a href="#">Women</a>
-          <a href="#">Men</a>
-          <a href="#">Children</a>
-        </div>
-      </div>
-      <div class="mydropdown">
-        <button class="mydropbtn">
-              Children
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="mydropdown-content">
-          <a href="#">Women</a>
-          <a href="#">Men</a>
 
-        </div>
-      </div>
-      <div class="mydropdown">
-        <button class="mydropbtn">
-          Clothes
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="mydropdown-content">
-          <a href="#"></a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
-        </div>
-      </div>
-      <div class="mydropdown">
-        <button class="mydropbtn">
-          Shoes
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="mydropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
-        </div>
-      </div>
-       <div class="mydropdown">
-        <button class="mydropbtn">
-          Accessories
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="test">
-          <div class="mydropdown-content">
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-
-
-        </div>
-
-        </div>
-
-      </div>
-        <div class="mydropdown">
-        <button class="mydropbtn">
-          Intimates
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="mydropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
-        </div>
-      </div>
-      <div class="mydropdown">
-        <button class="mydropbtn">
-          Coats
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="mydropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
-        </div>
-      </div>
-           <div class="mydropdown">
-        <button class="mydropbtn">
-          Sportswear
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="mydropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
-        </div>
-      </div>
-      <div class="mydropdown">
-        <button class="mydropbtn">
-          Swimwear
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="mydropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
-        </div>
-      </div>
-       <div class="mydropdown">
-        <button class="mydropbtn">
-          Outlet
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="mydropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
-        </div>
-      </div>
-      <div class="mydropdown">
-        <button class="mydropbtn">
-         Sale
-          <i class="fa fa-caret-down"></i>
-        </button>
-
-      </div>
-    </div>
 
 </body>
