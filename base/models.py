@@ -18,7 +18,7 @@ class Category(models.Model):
 
 class Items(models.Model):
     name = models.CharField(max_length=30)
-    image = models.CharField(max_length=200)
+    image = models.ImageField()
     price = models.CharField(max_length=10)
     size = models.CharField(max_length=10)
     colour = models.CharField(max_length=30)

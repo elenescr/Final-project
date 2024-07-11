@@ -1,0 +1,105 @@
+{% extends 'main.html'%}
+
+
+{% block content %}
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+}
+
+.main-container {
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-top: 150px;
+}
+
+#title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-cont {
+    display: flex;
+    flex-direction: column;
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.field label {
+    width: 100px; /* Set a fixed width for labels */
+    text-align: right;
+    margin-right: 10px;
+}
+
+.field input,
+.field select,
+.field textarea {
+    flex: 1; /* Make the input fields take up the remaining space */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.field input[type="file"] {
+    padding: 3px; /* Adjust padding for file input */
+}
+
+.field textarea {
+    height: 100px; /* Set a height for the textarea */
+    resize: vertical;
+}
+
+
+</style>
+
+<body>
+
+   <div class="main-container">
+       <h1 id="title" > Add Item:  </h1>
+       <form  action="" method="POST" enctype="multipart/form-data" class="form-cont">
+           {% csrf_token %}
+            <div class="field">
+            <label> Image: </label>
+            {{form.image}}
+        </div>
+
+        <div class="field">
+            <label> Item Name: </label>
+            {{form.name}}
+        </div>
+        <div class="field">
+            <label> Price: </label>
+            {{form.price}}
+        </div>
+        <div class="field">
+            <label> Size: </label>
+            {{form.size}}
+        </div>
+        <div class="field">
+            <label for = "item_colour"> Colour: </label>
+            {{form.colour}}
+        </div>
+        <div class="field">
+            <label> Category: </label>
+            {{form.subcat}}
+        </div>
+        <div class="field">
+            <label> Description: </label>
+            {{form.description}}
+        </div>
+           <button type="submit"> Create </button>
+       </form>
+
+   </div>
+
+</body>
+{% endblock %}

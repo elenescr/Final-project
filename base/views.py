@@ -5,7 +5,7 @@ from .models import User, Subcat, Category
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import MyUserCreationForm
+from .forms import MyUserCreationForm, ItemForm
 def home (request):
     q = request.GET.get('q') if request.GET.get('q') != None else ""
     items = Items.objects.filter(Q(name__icontains=q) | Q(description__icontains=q)| Q(subcat__name__icontains=q))
@@ -70,3 +70,27 @@ def register_page(request):
          login(request,user)
          return redirect('home')
  return render(request, 'base/register.html', context )
+
+def add_item (request):
+    form = ItemForm()
+
+    items= Items.objects.all()
+    # if request.method == 'POST':
+    #   form = ItemForm(request.POST)
+    #   new_item = Items(image = request.FILES['image'], name = form.data['name'], price = form.data['price'],
+    #                    size = form.data['size'], colour = form.data['colour'], subcat=form.cleaned_data.get('subcat'),
+    #                    description = form.data['description'])
+    #   new_item.save()
+    #   return redirect('home')
+    if request.method == 'POST':
+        form = ItemForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_item = form.save(commit=False)
+            if 'image' in request.FILES:
+                new_item.image = request.FILES['image']
+            new_item.save()
+            return redirect('home')
+    else:
+        form = ItemForm()
+    context={'form':form}
+    return render(request, 'base/add_item.html', context)

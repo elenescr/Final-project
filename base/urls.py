@@ -11,6 +11,7 @@ path ('adding/<str:id>/', views.adding, name= 'adding'),
 path ('delete/<str:id>/', views.delete, name= 'delete'),
 path ('login/', views.login_page, name= 'login'),
 path ('register/', views.register_page, name= 'register'),
-path ('logout/', views.logout_user, name= 'logout')
+path ('logout/', views.logout_user, name= 'logout'),
+path ('add/', views.add_item, name= 'add')
 
 ]
