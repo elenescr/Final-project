@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import Items
 from .models import User, Subcat, Category
 from django.db.models import Q
+from django.contrib.auth import authenticate, login, logout
 
 def home (request):
     q = request.GET.get('q') if request.GET.get('q') != None else ""
@@ -36,3 +37,28 @@ def delete(request, id):
        return redirect('favourites', request.user.id)
     return render(request,'base/delete.html', {'item':item})
 
+def login_page(request):
+  page = 'login'
+  if request.user.is_authenticated:
+      return redirect('home')
+  if request.method == 'POST':
+      username= request.POST.get('username')
+      password = request.POST.get('password')
+      try:
+          user= User.objects.get (username=username)
+      except:
+          pass
+      user = authenticate(request, username=username, password=password)
+      if user is not None:
+          login(request, user)
+          return redirect('home')
+      else:
+        pass
+  context = {'page' : page }
+  return render(request,'base/login-register.html', context )
+def logout_user(request):
+    logout(request)
+    return redirect('home')
+def register_page(request):
+ context = {}
+ return render(request, 'base/login-register.html', context )

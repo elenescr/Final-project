@@ -1,0 +1,44 @@
+{% extends 'main.html'%}
+{% block title%} <title> </title> {%endblock%}
+{% block content %}
+   <style>
+       .main-container{
+       margin-top:120px;
+       margin-left:20px
+       }
+   </style>
+
+   {% if page == 'login'%}
+<!--? login code\-->
+    <div class="main-container">
+        <form method="POST" action="">
+            {% csrf_token %}
+            <h1>Log In:</h1>
+             <label> Username: </label>
+            <br>
+            <input type="text" name="username" placeholder="Enter user">
+            <br>
+             <label> Password: </label>
+            <br>
+            <input type="password" name="password" placeholder="Enter password">
+            <br>
+            <input type="submit" value="Log In " style="margin-top:5px">
+             <br>
+            <hr>
+            <p> Have not signed up yet? </p>
+            <a href="{% url 'register' %}"> Register </a>
+        </form>
+    </div>
+    {% else %}
+<!--registration code-->
+    <div class="main-container">
+    <h1> Registration: </h1>
+         <br>
+            <hr>
+            <p> Already signed up? </p>
+            <a href="{% url 'login' %}"> Log In </a>
+    </div>
+
+    {% endif %}
+
+{% endblock %}
