@@ -18,9 +18,32 @@
     ></script>
     <link href="{% static 'styles/style.css'%}" rel="stylesheet">
 </head>
+<style>
+   .m-container{
+   margin-top:120px
+   }
+</style>
 
 <body>
-    {% include 'navbar.html' %}
+{% include 'navbar.html' %}
+
+
+{% if messages %}
+
+<div class="m-container">
+
+        {%for message in messages%}
+
+         <div class="alert alert-danger alert-dismissible" >
+             <strong>{{message}}</strong>
+             <button class="btn-close" type="button" data-bs-dismiss="alert"> </button>
+         </div>
+
+
+         {% endfor %}
+
+</div>
+{% endif %}
 
     {% block content %}
     {% endblock %}

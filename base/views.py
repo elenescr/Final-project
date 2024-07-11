@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.http import HttpResponse
 from .models import Items
 from .models import User, Subcat, Category
@@ -9,19 +9,23 @@ from .forms import MyUserCreationForm, ItemForm
 from .seeder import seeder_func
 from django.contrib import messages
 def home (request):
+
     q = request.GET.get('q') if request.GET.get('q') != None else ""
     items = Items.objects.filter(Q(name__icontains=q) | Q(description__icontains=q)| Q(subcat__name__icontains=q))
     subcats = Subcat.objects.all()
     categories = Category.objects.all()
+    seeder_func()
     context = {"items" : items, "subcats":subcats,"categories":categories}
     return render(request,'base/home.html', context)
 def account(request):
-    return render(request,'base/account.html')
+    items= Items.objects.all()
+    context = {"items": items}
+    return render(request,'base/account.html', context)
 @login_required(login_url='login')
 def favourites (request, pk):
     user= User.objects.get(id= int(pk))
     q = request.GET.get('q') if request.GET.get('q') != None else ""
-    items = user.item.filter(Q(name__icontains=q) | Q(description__icontains=q) | Q(subcat__name__icontains=q))
+    items = user.items.filter(Q(name__icontains=q) | Q(description__icontains=q) | Q(subcat__name__icontains=q))
     context = {"items": items, "user" : user}
     return render(request,'base/favourites.html', context)
 def cart(request):
@@ -35,7 +39,7 @@ def charity(request):
 def adding(request, id):
     item = Items.objects.get(id=id)
     user = request.user
-    user.item.add(item)
+    user.items.add(item)
     return redirect("home")
 
 def delete(request, id):
@@ -77,26 +81,37 @@ def register_page(request):
          return redirect('home')
  return render(request, 'base/register.html', context )
 
-def add_item (request):
-    form = ItemForm()
 
-    items= Items.objects.all()
-    # if request.method == 'POST':
-    #   form = ItemForm(request.POST)
-    #   new_item = Items(image = request.FILES['image'], name = form.data['name'], price = form.data['price'],
-    #                    size = form.data['size'], colour = form.data['colour'], subcat=form.cleaned_data.get('subcat'),
-    #                    description = form.data['description'])
-    #   new_item.save()
-    #   return redirect('home')
+def add_item(request):
+    form = ItemForm()  #
+
+    items = Items.objects.all()  #
+
     if request.method == 'POST':
         form = ItemForm(request.POST, request.FILES)
         if form.is_valid():
             new_item = form.save(commit=False)
             if 'image' in request.FILES:
                 new_item.image = request.FILES['image']
+            new_item.creator_id = request.user.id  #
             new_item.save()
             return redirect('home')
+        else:
+            pass
     else:
         form = ItemForm()
-    context={'form':form}
+
+    context = {'form': form, 'items': items}
     return render(request, 'base/add_item.html', context)
+
+
+
+def delete_item(request, id) :
+    item = get_object_or_404(Items, id=id)
+    print(f"Received id: {id}")
+    if request.method == 'POST':
+        print(f"Deleting item with id: {id}")
+        item.image.delete()
+        item.delete()
+        return redirect('home')
+    return render(request, 'base/delete.html', {'item': item})
