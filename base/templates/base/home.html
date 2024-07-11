@@ -16,7 +16,7 @@
       display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    padding: 10px;
+<!--    padding: 10px;-->
 
 
     }
@@ -30,9 +30,64 @@
     text-align: center;
     box-sizing: border-box;
  }
+
+.button-1 {
+  position: relative;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(40, 8, 129);
+  background-color: rgb(40, 8, 129);
 }
 
+.button-1, .button__icon, .button__text {
+  transition: all 0.3s;
+}
 
+.button-1 .button__text {
+  transform: translateX(30px);
+  color: #fff;
+  font-weight: 600;
+}
+
+.button-1 .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: rgb(40, 8, 129);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-1 .svg {
+  width: 30px;
+  stroke: #fff;
+}
+
+.button-1:hover {
+  background: rgb(40, 8, 129);
+}
+
+.button-1:hover .button__text {
+  color: transparent;
+}
+
+.button-1:hover .button__icon {
+  width: 148px;
+  transform: translateX(0);
+}
+
+.button-1:active .button__icon {
+  background-color: #2e8644;
+}
+
+.button-1:active {
+  border: 1px solid #2e8644;
+}
 </style>
 
 <div class="cont" style="background-color: rgba(27, 3, 63);;">
@@ -49,12 +104,19 @@
 <br>
 <hr>
 </div>
+<a href="{%url 'add'%}" style="text-decoration:none">
+    <button type="button" class="button-1" >
+  <span class="button__text">Add Item</span>
+  <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+</button>
+</a>
 
 <div class="cards">
+
   {% for item in items%}
 
        <div class="card" style="width: 18rem;">
-           <div class="photo-container">
+           <div class="photo-container" style="margin-right:20px; margin-top:5px">
 
                <div class="circle">
                 {% if request.user.is_authenticated %}
@@ -88,7 +150,7 @@
                </div>
 
 
-               <img src="{{item.image.url}}" class="card-img-top" alt="...">
+               <img src="{{item.image.url}}" class="card-img-top" alt="..." style="width: 17rem; height:250px;   object-fit: cover;">
            </div>
 
   <div class="card-body">
@@ -100,7 +162,8 @@
     <li class="list-group-item">Size: {{item.size}} </li>
   </ul>
   <div class="card-body-2">
-    <a href="#" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;"> See More</button></a>
+
+    <a href="{% url 'about'  item.id %}" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;"> See More</button></a>
 <!--    {% if request.user.is_authenticated %}-->
 <!--      {% if item in request.user.item.all %}-->
 <!--     <a href="{% url 'delete' item.id %}" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;"> Delete </button></a>-->

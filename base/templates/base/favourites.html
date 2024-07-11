@@ -7,10 +7,9 @@
     .cards{
 
       margin-top: 175px;
-      display: grid;
+    display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-    padding: 10px;
 
 
     }
@@ -134,7 +133,9 @@ height: 50px;
 .photo-container {
   position: relative; /* Make the container relative for positioning */
 }
-
+.card-img-top{
+margin top: 5px
+}
 
 
 </style>
@@ -143,7 +144,7 @@ height: 50px;
   {% for item in items%}
 
        <div class="card" style="width: 18rem;">
-           <div class="photo-container">
+           <div class="photo-container" style="margin-right:20px; margin-top:5px">
                <div class="circle">
                 {% if request.user.is_authenticated %}
                    {% if item not in request.user.item.all %}
@@ -176,7 +177,7 @@ height: 50px;
                </div>
 
 
-               <img src="{% item.image.url %}" class="card-img-top" alt="...">
+               <img src="{{item.image.url }}" class="card-img-top" alt="..." style="width: 17rem; height:250px;   object-fit: cover;>
            </div>
 
   <div class="card-body">

@@ -6,6 +6,8 @@ from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import MyUserCreationForm, ItemForm
+from .seeder import seeder_func
+from django.contrib import messages
 def home (request):
     q = request.GET.get('q') if request.GET.get('q') != None else ""
     items = Items.objects.filter(Q(name__icontains=q) | Q(description__icontains=q)| Q(subcat__name__icontains=q))
@@ -24,6 +26,10 @@ def favourites (request, pk):
     return render(request,'base/favourites.html', context)
 def cart(request):
     return render(request,'base/cart.html')
+def about(request, id):
+    item= Items.objects.get(id=id)
+    context = {'item':item, }
+    return render(request,'base/about.html', context)
 def charity(request):
     return render(request,'base/charity.html')
 def adding(request, id):
@@ -48,13 +54,13 @@ def login_page(request):
       try:
           user= User.objects.get (username=username)
       except:
-          pass
+          messages.error(request,"This username doesn't exist!")
       user = authenticate(request, username=username, password=password)
       if user is not None:
           login(request, user)
           return redirect('home')
       else:
-        pass
+          messages.error(request, "This username or password is incorrect!")
 
   return render(request,'base/login.html' )
 def logout_user(request):

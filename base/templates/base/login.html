@@ -8,12 +8,18 @@
        }
    </style>
 
-
 <!--? login code\-->
     <div class="main-container">
         <form method="POST" action="">
             {% csrf_token %}
             <h1>Log In:</h1>
+            {% if messages %}
+                <ul class="messages" style="">
+                    {%for message in messages%}
+                    <li>{{message}}</li>
+                     {% endfor %}
+                </ul>
+            {% endif %}
              <label> Username: </label>
             <br>
             <input type="text" name="username" placeholder="Enter user">
