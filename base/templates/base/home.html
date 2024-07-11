@@ -101,11 +101,11 @@
   </ul>
   <div class="card-body-2">
     <a href="#" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;"> See More</button></a>
-    {% if request.user.is_authenticated %}
-      {% if item in request.user.item.all %}
-     <a href="{% url 'delete' item.id %}" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;"> Delete </button></a>
-       {% endif %}
-      {% endif %}
+<!--    {% if request.user.is_authenticated %}-->
+<!--      {% if item in request.user.item.all %}-->
+<!--     <a href="{% url 'delete' item.id %}" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;"> Delete </button></a>-->
+<!--       {% endif %}-->
+<!--      {% endif %}-->
   </div>
        </div>
 

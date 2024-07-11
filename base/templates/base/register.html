@@ -1,0 +1,27 @@
+{% extends 'main.html'%}
+{% block title%} <title> Registration </title> {%endblock%}
+{% block content %}
+   <style>
+       .main-container{
+       margin-top:120px;
+       margin-left:20px
+       }
+   </style>
+
+<!--? login code\-->
+    <div class="main-container">
+      <h1> Registration: </h1>
+        <form  method="POST" action="">
+            {% csrf_token %}
+            {{form}}
+
+            <br>
+            <input type="submit" value="Register" style="margin-top:5px">
+            <br>
+            <hr>
+            <p> Already signed up? </p>
+            <a href="{% url 'login' %}"> Log In  </a>
+        </form>
+    </div>
+
+{% endblock %}
