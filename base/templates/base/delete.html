@@ -1,0 +1,19 @@
+{% extends 'main.html'%}
+
+
+{% block content %}
+<style>
+    .main{
+    margin-top:200px;
+    text-align: center;
+    }
+</style>
+
+
+<form method="POST" action="" class="main">
+    {% csrf_token %}
+<p> Are uou sure you want to delete {{item}}? </p>
+    <input type="submit" value="Delete">
+</form>
+
+{% endblock %}

@@ -6,21 +6,22 @@
   right: 0; /* Place it at the right */
   width: 30px;
   height: 30px;
-  margin-right: 10px;
- margin-top: 10px;
+  margin-right: 9px;
+  margin-top: 9px;
+  margin-left:12px;
   transition: .3s;
 
 }
 .circle{
  position: absolute;
-
+margin-left:10px;
 background-color:rgba(236, 233, 226, 0.89);
 border-radius:50%;
 width: 50px;
 height: 50px;
  top: 0; /* Place it at the top */
  right: 0; /* Place it at the right */
- margin-right: 9px;
+ margin-right: 2px;
  margin-top: 9px;
 }
 

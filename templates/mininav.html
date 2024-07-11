@@ -1,6 +1,8 @@
+{% load static %}
+<link href="{% static 'styles/style.css'%}" rel="stylesheet">
 
 <body>
-<div class="mini-navbar">
+<div class="mini-navbar" >
       <div class="mydropdown">
         <button class="mydropbtn">
               Women
@@ -34,16 +36,22 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="mydropdown-content">
+            {% for subcat in subcats%}
+             <a href="{{ request.path }}?q={{subcat.name}}"> {{subcat}} </a>
+            {%endfor%}
 
-          <ul>
-             <a href="#"> Tops</a>
-            <li> g</li>
-            <li> g</li>
-            <li> g</li>
-            <li> g</li>
-          </ul>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+<!--               <a href="#">Activewear</a>-->
+<!--               <a href="{{ request.path }}?q={{subcats.name}}">Cardigans </a>-->
+<!--               <a href="#">Dresses</a>-->
+<!--               <a href="#">Pants</a>-->
+<!--               <a href="#">Shirts</a>-->
+<!--               <a href="#">Shorts</a>-->
+<!--               <a href="#">Skirts</a>-->
+<!--               <a href="#"> Suits & Blazers </a>-->
+<!--               <a href="#"> Sweaters </a>-->
+<!--               <a href="#">T-Shirts</a>-->
+<!--               <a href="#"> Tops </a>-->
+
         </div>
       </div>
       <div class="mydropdown">
@@ -52,9 +60,12 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="mydropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+          <a href="#">Boots</a>
+          <a href="#">Flats</a>
+          <a href="#">Heels</a>
+          <a href="#">Loafers</a>
+          <a href="#">Sandals</a>
+          <a href="#">Sneakers</a>
         </div>
       </div>
        <div class="mydropdown">
@@ -64,23 +75,13 @@
         </button>
         <div class="test">
           <div class="mydropdown-content">
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-          <a class="element" href="#">fdjkkf 1</a>
-
-
+          <a class="element" href="#">Bags</a>
+          <a class="element" href="#">Belts</a>
+          <a class="element" href="#">Hats</a>
+          <a class="element" href="#">Jewelry</a>
+          <a class="element" href="#">Scarves</a>
+          <a class="element" href="#">Sunglasses</a>
+          <a class="element" href="#">Ties</a>
         </div>
 
         </div>
@@ -92,9 +93,12 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="mydropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+          <a href="#">Bras</a>
+          <a href="#">Lingerie Sets</a>
+          <a href="#">Panties</a>
+          <a href="#">Shapewear</a>
+          <a href="#">Sleepwear</a>
+          <a href="#">Socks</a>
         </div>
       </div>
       <div class="mydropdown">
@@ -103,9 +107,9 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="mydropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+          <a href="#">Jackets</a>
+          <a href="#">Vests</a>
+          <a href="#">Winter Coat</a>
         </div>
       </div>
            <div class="mydropdown">
@@ -114,9 +118,14 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="mydropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+          <a href="#">Athletic Tops</a>
+          <a href="#">Caps</a>
+          <a href="#">Gym Shorts</a>
+          <a href="#">Joggers</a>
+          <a href="#">Sports Bras</a>
+          <a href="#">Sports Jerseys</a>
+          <a href="#">Tracksuit</a>
+          <a href="#">Yoga Pants</a>
         </div>
       </div>
       <div class="mydropdown">
@@ -125,9 +134,11 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="mydropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+          <a href="#">Bikinis</a>
+          <a href="#">Cover-Up</a>
+          <a href="#">One-Piece</a>
+          <a href="#">Swim Shorts</a>
+          <a href="#">Trunks</a>
         </div>
       </div>
        <div class="mydropdown">
@@ -136,9 +147,6 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="mydropdown-content">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
         </div>
       </div>
       <div class="mydropdown">

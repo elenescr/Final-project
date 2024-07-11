@@ -1,3 +1,4 @@
+
 /* FOOTER STYLE */
  .footer{
        display: flex;
@@ -22,7 +23,6 @@
     }
     .form-control {
       border: 2px;
-
       border-style: solid;
       border-bottom-color: red;
       border-top-color: rgb(40, 8, 129);
@@ -31,7 +31,7 @@
       display: flex;
       margin-top: 0px;
       line-height: 0px;
-      padding: 4px;
+      padding: 2px;
     }
 
     .form-control:focus {
@@ -53,22 +53,22 @@
     }
 
     /* CARDS STYLE*/
-     .cards{
-      display: flex;
+
+
+.cards{
+      display: grid;
+      grid-pag:30px;
        margin-top: 150px;
-      justify-content: center; /* Center items horizontally */
-      align-items: center; /* Center items vertically */
-
-
+     justify-content: center;
+      align-items: center;
 
     }
     .card{
-      margin-top: 100px;
+      margin-top: 10px;
       justify-content: center;
       align-items: center;
       margin-left: 30px;
-
-
+      border-radius:10px;
     }
     .card-title {
       text-align: center;
@@ -166,3 +166,11 @@
       max-width: 35%;
       position: fixed;
     }
+
+    .card-body-2{
+    margin-top:10px;
+    margin-bottom:10px;
+    }
+
+
+}
