@@ -11,3 +11,8 @@ class ItemForm(ModelForm):
     class Meta:
         model = Items
         fields = ['image', 'name', 'price', 'size', 'colour', 'subcat', 'description']
+
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['avatar', 'username', 'email',  'items']

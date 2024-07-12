@@ -5,7 +5,7 @@ from .models import User, Subcat, Category
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import MyUserCreationForm, ItemForm
+from .forms import MyUserCreationForm, ItemForm, UserForm
 from .seeder import seeder_func
 from django.contrib import messages
 def home (request):
@@ -115,3 +115,14 @@ def delete_item(request, id) :
         item.delete()
         return redirect('home')
     return render(request, 'base/delete.html', {'item': item})
+
+@login_required(login_url='login')
+def update_user(request):
+    user = request.user
+    form = UserForm(instance=user)
+    if request.method =='POST':
+        form = UserForm(request.POST, request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('account')
+    return render(request, 'base/update_user.html',{'form':form})
