@@ -190,9 +190,9 @@ margin top: 5px
     <li class="list-group-item">Size: {{item.size}} </li>
   </ul>
   <div class="card-body-2">
-    <a href="#" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;"> See More</button></a>
+    <a href="{% url 'about' item.id %}" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;"> See More</button></a>
     {% if request.user.is_authenticated %}
-      {% if item in request.user.item.all %}
+      {% if item in request.user.items.all %}
      <a href="{% url 'delete' item.id %}" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;"> Delete </button></a>
        {% endif %}
       {% endif %}

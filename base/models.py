@@ -35,3 +35,13 @@ class State(models.Model):
 class User(AbstractUser):
     items = models.ManyToManyField(Items, blank=True, related_name="users_items")  # Adjusted related_name to avoid clash
     avatar = models.ImageField(null=True, default='avatar.svg')
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    item = models.ForeignKey(Items, on_delete=models.CASCADE)
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        ordering = ['-created']
+    def __str__(self):
+        return self.body
+

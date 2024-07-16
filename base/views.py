@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from django.http import HttpResponse
 from .models import Items
-from .models import User, Subcat, Category
+from .models import User, Subcat, Category, Comment
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -32,7 +32,15 @@ def cart(request):
     return render(request,'base/cart.html')
 def about(request, id):
     item= Items.objects.get(id=id)
-    context = {'item':item, }
+    item_comments= item.comment_set.all()
+
+    if request.method == "POST":
+        comment = Comment.objects.create(
+            user = request.user,
+            item = item,
+            body = request.POST.get('body')
+        )
+    context = {'item':item, 'comments': item_comments }
     return render(request,'base/about.html', context)
 def charity(request):
     return render(request,'base/charity.html')
@@ -45,7 +53,7 @@ def adding(request, id):
 def delete(request, id):
     item = Items.objects.get(id=id)
     if request.method== "POST":
-       request.user.item.remove(item)
+       request.user.items.remove(item)
        return redirect('favourites', request.user.id)
     return render(request,'base/delete.html', {'item':item})
 
@@ -108,13 +116,13 @@ def add_item(request):
 
 def delete_item(request, id) :
     item = get_object_or_404(Items, id=id)
-    print(f"Received id: {id}")
+
     if request.method == 'POST':
-        print(f"Deleting item with id: {id}")
+
         item.image.delete()
         item.delete()
         return redirect('home')
-    return render(request, 'base/delete.html', {'item': item})
+    return render(request, 'base/delete.html', {'obj': item})
 
 @login_required(login_url='login')
 def update_user(request):
@@ -126,3 +134,13 @@ def update_user(request):
             form.save()
             return redirect('account')
     return render(request, 'base/update_user.html',{'form':form})
+
+
+def delete_comment(request, id) :
+    comment =Comment.objects.get(id=id)
+    item= comment.item
+    if request.method == 'POST':
+
+        comment.delete()
+        return redirect('about', item.id)
+    return render(request, 'base/delete.html', {'obj': comment})

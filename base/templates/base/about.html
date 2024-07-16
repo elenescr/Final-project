@@ -59,7 +59,34 @@
     <p><strong>Description:</strong> {{item.description}}</p>
   </div>
 </div>
+<br>
+<div class="comments-cont">
+  <h2> Comments: </h2>
+  <form METHOD="POST" action="">
+      {% csrf_token %}
+    {% if  request.user.is_authenticated%}
+    <input name="body" placeholder="your comment" style="margin: 20px;padding: 5px; border-radius:20px; width:50%;">
+    {%endif%}
+    <br>
+    {% for comment in comments%}
+        <div>
+            <img src="{{comment.user.avatar.url}}" style="width:35px; height:35px; border-radius:50px">
+            <span> {{comment.user.username}}</span>
+          <span>{{comment.created | timesince}} ago</span>
+          <div style=" display:flex;">
+            <p style="border:solid; border-width:thin; margin-left:40px; border-radius:20px; width:50%; padding:10px;"  >
+              {{comment.body}}
+            </p>
+            {% if request.user == comment.user%}
+          <button  type="submit" style="margin-left:10px;"> <a href="{% url 'delete_comment' comment.id %}" style="text-decoration:none; color:black">  Delete </a> </button>
+            {% endif %}
+          </div>
+        </div>
 
+    {%endfor%}
+  </form>
+
+</div>
 
 </body>
 {% endblock %}

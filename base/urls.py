@@ -16,5 +16,5 @@ path ('logout/', views.logout_user, name= 'logout'),
 path ('add/', views.add_item, name= 'add'),
 path ('delete_item/<int:id>/', views.delete_item, name= 'delete_item'),
 path ('update_user/', views.update_user, name= 'update_user'),
-
+path ('delete_comment/<int:id>/', views.delete_comment, name= 'delete_comment')
 ]

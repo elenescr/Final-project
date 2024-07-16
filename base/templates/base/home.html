@@ -82,11 +82,11 @@
 }
 
 .button-1:active .button__icon {
-  background-color: #2e8644;
+  background-color: rgb(62, 22, 172);
 }
 
 .button-1:active {
-  border: 1px solid #2e8644;
+  border: 1px solid rgb(62, 22, 172);
 }
 </style>
 
@@ -154,8 +154,8 @@
            </div>
 
   <div class="card-body">
-    <h5 class="card-title" >{{item.name}}</h5>
-    <p class="card-text">{{item.description}}</p>
+    <a href="{% url 'about'  item.id %}" style="text-decoration:none; color: black;"> <h5 class="card-title" >{{item.name}}</h5></a>
+      <p class="card-text">{{item.description}}</p>
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Price: {{item.price}}</li>
