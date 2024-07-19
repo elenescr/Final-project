@@ -28,8 +28,14 @@ def favourites (request, pk):
     items = user.items.filter(Q(name__icontains=q) | Q(description__icontains=q) | Q(subcat__name__icontains=q))
     context = {"items": items, "user" : user}
     return render(request,'base/favourites.html', context)
-def cart(request):
-    return render(request,'base/cart.html')
+def product(request):
+    q = request.GET.get('q') if request.GET.get('q') != None else ""
+    items = Items.objects.filter(Q(name__icontains=q) | Q(description__icontains=q) | Q(subcat__name__icontains=q))
+    subcats = Subcat.objects.all()
+    categories = Category.objects.all()
+    seeder_func()
+    context = {"items": items, "subcats": subcats, "categories": categories}
+    return render(request,'base/product.html', context)
 def about(request, id):
     item= Items.objects.get(id=id)
     item_comments= item.comment_set.all()

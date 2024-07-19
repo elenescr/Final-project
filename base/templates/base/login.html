@@ -3,18 +3,20 @@
 {% block content %}
 
    <style>
+
     .main {
   position: relative;
   display: flex;
   flex-direction: column;
   background-color: #240046;
-  max-height: 450px;
+  max-height: 500px;
   overflow: hidden;
   border-radius: 12px;
   box-shadow: 7px 7px 10px 3px #24004628;
   width:35%;
   margin-left:425px;
- margin-top:120px;
+
+
 }
 
 .form {
@@ -70,7 +72,7 @@ label {
 
 .register label {
   color: #573b8a;
-  transform: scale(.6);
+  transform: scale(.8);
 }
 
 #chk:checked ~ .register {
@@ -105,28 +107,7 @@ label {
   background-color: #6d44b8;
 }
 </style>
-<!--   </style>-->
-
-<!--? login code\-->
-<!--    <div class="main-container">-->
-<!--  <form class="form" method="POST" action="">-->
-<!--      {% csrf_token %}-->
-<!--            <h1>Log In:</h1>-->
-<!--             <label> Username: </label>-->
-<!--            <br>-->
-<!--            <input type="text" name="username" placeholder="Enter user">-->
-<!--            <br>-->
-<!--             <label> Password: </label>-->
-<!--            <br>-->
-<!--            <input type="password" name="password" placeholder="Enter password">-->
-<!--            <br>-->
-<!--            <input type="submit" value="Log In " style="margin-top:5px">-->
-<!--             <br>-->
-<!--            <hr>-->
-<!--           </form>-->
-<!--            <p> Have not signed up yet? </p>-->
-<!--            <a href="{% url 'register' %}"> Register </a>-->
-<!--        </div>-->
+<body>
 <div class="main">
 		<input type="checkbox" id="chk" aria-hidden="true">
 
@@ -148,6 +129,10 @@ label {
 				</form>
 			</div>
 	</div>
+
+
+
+</body>
 
 
 

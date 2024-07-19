@@ -65,6 +65,7 @@
   <form METHOD="POST" action="">
       {% csrf_token %}
     {% if  request.user.is_authenticated%}
+     <img src="{{user.avatar.url}}" style="width:35px; height:35px; border-radius:50px">
     <input name="body" placeholder="your comment" style="margin: 20px;padding: 5px; border-radius:20px; width:50%;">
     {%endif%}
     <br>

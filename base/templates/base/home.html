@@ -1,181 +1,174 @@
 {% extends 'main.html'%}
 {% block title %} <title> Home page </title> {% endblock %}
 {% block content%}
+
 {% load static %}
-{% include 'mininav.html' %}
+ <section class="slider_section ">
 
-<link href="{% static 'styles/hover-field.css'%}" rel="stylesheet">
-<link href="{% static 'styles/heart.css'%}" rel="stylesheet">
-<link href="{% static 'styles/style.css'%}" rel="stylesheet">
-
-<style>
-
-    .cards{
-
-      margin-top: 10px;
-      display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-<!--    padding: 10px;-->
-
-
-    }
-    .card{
-
- border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 20px;
-    padding-top:0px;
-    padding-right:0px;
-    text-align: center;
-    box-sizing: border-box;
- }
-
-.button-1 {
-  position: relative;
-  width: 150px;
-  height: 40px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  border: 1px solid rgb(40, 8, 129);
-  background-color: rgb(40, 8, 129);
-}
-
-.button-1, .button__icon, .button__text {
-  transition: all 0.3s;
-}
-
-.button-1 .button__text {
-  transform: translateX(30px);
-  color: #fff;
-  font-weight: 600;
-}
-
-.button-1 .button__icon {
-  position: absolute;
-  transform: translateX(109px);
-  height: 100%;
-  width: 39px;
-  background-color: rgb(40, 8, 129);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.button-1 .svg {
-  width: 30px;
-  stroke: #fff;
-}
-
-.button-1:hover {
-  background: rgb(40, 8, 129);
-}
-
-.button-1:hover .button__text {
-  color: transparent;
-}
-
-.button-1:hover .button__icon {
-  width: 148px;
-  transform: translateX(0);
-}
-
-.button-1:active .button__icon {
-  background-color: rgb(62, 22, 172);
-}
-
-.button-1:active {
-  border: 1px solid rgb(62, 22, 172);
-}
-</style>
-
-<div class="cont" style="background-color: rgba(27, 3, 63);;">
-    <br>
-    <div class="card-2" >
-   <m > <span style="color:red;" > <h4> SALE % </h4></span></m>
-   <m > <span> <h4>Summer <br> Styles </h4>  </span></m>
-   <m> <span> <h4> Vintage <br> Finds </h4> </span></m>
-   <m> <span> <h4> Luxury <br> Labels </h4> </span></m>
-   <m> <span> <h4> Denim <br> &  <br>Jeans </h4>  </span></m>
-   <m> <span><h5> NEW <br> COLLECTION </h5></span></m>
-
-</div>
-<br>
-<hr>
-</div>
-{% if request.user.is_authenticated%}
-<a href="{%url 'add'%}" style="text-decoration:none">
-    <button type="button" class="button-1" >
-  <span class="button__text">Add Item</span>
-  <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
-</button>
-</a>
-{% endif %}
-<div class="cards">
-
-  {% for item in items%}
-
-       <div class="card" style="width: 18rem;">
-           <div class="photo-container" style="margin-right:20px; margin-top:5px">
-
-               <div class="circle">
-                {% if request.user.is_authenticated %}
-                   {% if item not in request.user.items.all %}
-                   <a href=" {% url 'adding' item.id %}">
-                      <div title="Like" class="heart-container">
-            <input id="Give-It-An-Id" class="checkbox" type="checkbox">
-
-                          <div class="svg-container">
-                <svg xmlns="http://www.w3.org/2000/svg" class="svg-outline" viewBox="0 0 24 24">
-                    <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Zm-3.585,18.4a2.973,2.973,0,0,1-3.83,0C4.947,16.006,2,11.87,2,8.967a4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,11,8.967a1,1,0,0,0,2,0,4.8,4.8,0,0,1,4.5-5.05A4.8,4.8,0,0,1,22,8.967C22,11.87,19.053,16.006,13.915,20.313Z">
-                    </path>
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" class="svg-filled" viewBox="0 0 24 24">
-                    <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z">
-                    </path>
-                </svg>
-                <svg xmlns="http://www.w3.org/2000/svg" height="100" width="100" class="svg-celebrate">
-                    <polygon points="10,10 20,20"></polygon>
-                    <polygon points="10,50 20,50"></polygon>
-                    <polygon points="20,80 30,70"></polygon>
-                    <polygon points="90,10 80,20"></polygon>
-                    <polygon points="90,50 80,50"></polygon>
-                    <polygon points="80,80 70,70"></polygon>
-                </svg>
+            <div class="slider_bg_box">
+               <img src="{% static 'images/slider-1.jpg'%}" alt="">
             </div>
-        </div>
-                   </a>
-           {% endif %}
-         {% endif %}
+            <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+               <div class="carousel-inner">
+                  <div class="carousel-item active">
+                     <div class="container ">
+                        <div class="row">
+                           <div class="col-md-7 col-lg-6 ">
+                              <div class="detail-box">
+                                 <h1>
+                                    <span>
+                                    Give clothes
+                                    </span>
+                                    <br>
+                                    Second chance
+                                 </h1>
+                                 <p>
+                                    Thrifting: unique finds, eco-friendly, budget-friendly!
+                                    Discover hidden gems & reduce waste – all on one treasure hunt.
+                                 </p>
+                                 <div class="btn-box">
+                                    <a href="product.html" class="btn1">
+                                    Shop Now
+                                    </a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                   <div class="carousel-item ">
+                     <div class="container ">
+                        <div class="row">
+                           <div class="col-md-7 col-lg-6 ">
+                              <div class="detail-box">
+                                 <h1>
+                                    <span>
+                                    Unearth
+                                    </span>
+                                    <br>
+                                    hidden treasures.
+
+                                 </h1>
+                                 <p>
+                                    Find vintage gems, handcrafted wonders, and unexpected delights.
+                                    Unleash your unique style with a treasure hunt for the extraordinary.
+                                 </p>
+                                 <div class="btn-box">
+                                    <a href="product.html" class="btn1">
+                                    Shop Now
+                                    </a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="carousel-item ">
+
+                     <div class="container ">
+                        <div class="row">
+                           <div class="col-md-7 col-lg-6 ">
+                              <div class="detail-box">
+                                 <h1>
+                                    <span>
+                                    Thrift it.
+                                    </span>
+                                    <br>
+                                     Save the planet.
+                                 </h1>
+                                 <p>
+                                    Give clothes a second life! Thrifting reduces landfill waste, lowers carbon footprint & saves precious resources.
+                                    Be kind to the planet, one find at a time.
+                                 </p>
+                                 <div class="btn-box" >
+                                    <a href="product.html" class="btn1" >
+                                    Shop Now
+                                    </a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
                </div>
-
-               <img src="{{item.image.url }}" class="card-img-top" alt="..." style="width: 17rem; height:250px;   object-fit: cover;">
-           </div>
-
-  <div class="card-body">
-    <a href="{% url 'about'  item.id %}" style="text-decoration:none; color: black;"> <h5 class="card-title" >{{item.name}}</h5></a>
-      <p class="card-text">{{item.description}}</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Price: {{item.price}}</li>
-    <li class="list-group-item">Size: {{item.size}} </li>
-  </ul>
-  <div class="card-body-2">
-
-    <a href="{% url 'about'  item.id %}" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;"> See More</button></a>
-<!--    {% if request.user.is_authenticated %}-->
-<!--      {% if item in request.user.item.all %}-->
-<!--     <a href="{% url 'delete' item.id %}" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;"> Delete </button></a>-->
-<!--       {% endif %}-->
-<!--      {% endif %}-->
-  </div>
-       </div>
-
-
-  {% endfor %}
-
+               <div class="container">
+                  <ol class="carousel-indicators">
+                     <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
+                     <li data-target="#customCarousel1" data-slide-to="1"></li>
+                     <li data-target="#customCarousel1" data-slide-to="2"></li>
+                  </ol>
+               </div>
+            </div>
+         </section>
+{% if not request.user.is_authenticated %}
+      <!-- why section -->
+      <section class="why_section layout_padding">
+         <div class="container">
+            <div class="heading_container heading_center">
+               <h2>
+                  Why Shop With Us
+               </h2>
+            </div>
+            <div class="row">
+               <div class="col-md-4">
+                  <div class="box ">
+                     <div class="img-box">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shop-window" viewBox="0 0 16 16">
+  <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.37 2.37 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h12V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5m2 .5a.5.5 0 0 1 .5.5V13h8V9.5a.5.5 0 0 1 1 0V13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a.5.5 0 0 1 .5-.5"/>
+</svg>
 </div>
+                     <div class="detail-box">
 
+                        <h5>
+                           Wide Choice
+                        </h5>
+                        <p>
+                           Many online stores collected together
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="box ">
+                     <div class="img-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-laptop" viewBox="0 0 16 16">
+  <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5"/>
+</svg>
+                     </div>
+                     <div class="detail-box">
+                        <h5>
+                           convenience
+                        </h5>
+                        <p>
+                           You can see available items without going to stores
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div class="box ">
+                     <div class="img-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-binoculars" viewBox="0 0 16 16">
+  <path d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5z"/>
+</svg>
+                     </div>
+                     <div class="detail-box">
+                        <h5>
+                           Unique Finds
+                        </h5>
+                        <p>
+                           Discover hidden gem thrift stores and items.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+{% endif %}
+<!-- end why section -->
+{% include 'base/products.html' %}
 
    {%endblock%}
