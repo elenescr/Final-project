@@ -1,0 +1,58 @@
+{% load static %}
+ <!-- footer start -->
+      <footer>
+         <div class="container">
+            <div class="row">
+               <div class="col-md-4">
+                   <div class="full">
+                      <div class="logo_footer">
+                        <a href="{% url 'home' %}"><img width="210" src="{% static 'images/logo.png' %}" alt="#" /></a>
+                      </div>
+                      <div class="information_f">
+                        <p><strong>TELEPHONE:</strong> +91 987 654 3210</p>
+                        <p><strong>EMAIL:</strong> wornwell@gmail.com</p>
+                      </div>
+                   </div>
+               </div>
+               <div class="col-md-8">
+                  <div class="row">
+                  <div class="col-md-7">
+                     <div class="row">
+                        <div class="col-md-6">
+                     <div class="widget_menu">
+                        <h3>Menu</h3>
+                        <ul>
+                           <li><a href="{% url 'home' %}">Home</a></li>
+                           <li><a href="#">About</a></li>
+
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="widget_menu">
+                        <h3>Account</h3>
+                        <ul>
+                           {% if  request.user.is_authenticated%}
+                           <li><a href="{% url 'account' %}">Account</a></li>
+                           {% endif %}
+                           <li><a href="{% url 'product' %}">Checkout</a></li>
+                           <li><a href="{% url 'login' %}">Login</a></li>
+                           <li><a href="{% url 'register' %}">Register</a></li>
+
+                        </ul>
+                     </div>
+                  </div>
+
+
+
+                     </div>
+                  </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </footer>
+      <!-- footer end -->
+      <div class="cpy_">
+
+      </div>

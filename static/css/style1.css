@@ -106,9 +106,10 @@ a:focus {
 }
 
 /*header section*/
+
 .hero_area {
   position: relative;
-  min-height: 100vh;
+  min-height: 10vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -259,6 +260,7 @@ a:focus {
   top: 0;
 }
 
+
 /*end header section*/
 /* slider section */
 .slider_section {
@@ -273,18 +275,20 @@ a:focus {
           align-items: center;
   position: relative;
   padding: 90px 0 75px 0;
-  /* background-color: white; */
+  margin-top:30px;
 }
 
 .slider_section .row {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+
 }
 
 .slider_section #customCarousel1 {
   width: 100%;
   position: unset;
+
 }
 
 .slider_section .detail-box h1 {
@@ -293,6 +297,8 @@ a:focus {
     margin-bottom: 15px;
     color: #002c3e;
     line-height: 70px;
+    margin-right: 160px;
+
 }
 
 .slider_section .detail-box h1 span {
@@ -303,7 +309,7 @@ a:focus {
     font-size: 16px;
     margin-top: 20px;
     margin-bottom: 1.5rem;
-   margin-right: 20px;
+   margin-right: 80px;
 
 }
 
@@ -387,6 +393,9 @@ a:focus {
     overflow: hidden;
     box-shadow: 5px 5px 5px -5px rgba(0,0,0,.2);
     border: solid #fff 10px;
+    border-radius:15px;
+    align-items:center;
+
 }
 
 .product_section .box .img-box {
@@ -417,6 +426,17 @@ a:focus {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+
+}
+.detail-box{
+display: flex; /* Make the detail-box a flex container */
+  flex-direction: column; /* Arrange elements vertically */
+  align-items: center; /* Center elements horizontally */
+  justify-content: center; /* Center elements vertically within the box */
+}
+
+.name, .price {
+  text-align: center; /* Ensure centered text within elements */
 }
 
 .product_section .box .detail-box h5 {
@@ -812,11 +832,13 @@ a:focus {
   background-color: #002c3e;
   color: #ffffff;
   padding-top: 70px;
+  margin-top: 130px;
 }
 
 .footer_section {
     color: #ffffff;
     text-align: left;
+
 }
 
 .footer_section h4 {
@@ -910,6 +932,7 @@ a:focus {
   -webkit-box-align: stretch;
       -ms-flex-align: stretch;
           align-items: stretch;
+
 }
 
 .footer_section .map_container .map {
@@ -921,6 +944,7 @@ a:focus {
 
 .footer_section .map_container .map #googleMap {
   height: 100%;
+
 }
 
 .footer_section .footer-info {
@@ -937,6 +961,9 @@ a:focus {
 
 .footer_section .footer-info p a {
   color: inherit;
+}
+footer{
+margin-top: 30px;
 }
 /*# sourceMappingURL=style.css.map */
 
@@ -1138,6 +1165,138 @@ form input[type="submit"]:focus {
     font-size: 15px;
     font-weight: 400;
 }
+.search_form{
+    display: flex:
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    width: 450px;
+    margin-right: 0px;
+    padding-right : 0px;
+}
+product-container {
+  display: flex;
+  align-items: flex-start; /* Align items at the top */
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f9fa; /* Light gray background */
+  border: 1px solid #dee2e6; /* Light border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Shadow for depth */
+}
+
+.product-image {
+  flex: 0 0 200px; /* Fixed width for the image */
+  margin-right: 20px;
+  overflow: hidden; /* Hide overflow if image exceeds container */
+  border: 1px solid #ced4da; /* Border for image */
+}
+
+.product-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 5px; /* Rounded corners for image */
+}
+
+.product-details {
+  flex: 1; /* Flexible width for the details section */
+}
+
+.product-details h2 {
+  margin-top: 0; /* Remove default margin */
+  font-size: 1.5em; /* Larger font size for product name */
+}
+
+.product-details p {
+  margin-bottom: 10px; /* Add some spacing between paragraphs */
+  line-height: 1.6; /* Increased line height for readability */
+}
+/* add button */
+.cssbuttons-io-button {
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 0.7em 1.4em 0.7em 1.1em;
+  color: white;
+  background: rgb(33, 4, 114);
+  background: linear-gradient(0deg, rgba(45, 5, 153,1) 0%, rgba(33,4,114,1) 100%);
+  border: none;
+  box-shadow: 0 0.7em 1.5em -0.5em  ;
+  letter-spacing: 0.05em;
+  border-radius: 10px;
+  margin-left: 40px;
+  width: 100px;
+  height: 40px;
+}
+
+.cssbuttons-io-button svg {
+  margin-right: 6px;
+}
 
 
 
+.cssbuttons-io-button:active {
+  box-shadow: 0 0.3em 1em -0.5em #14a73e98;
+}
+
+/* edit button */
+ .Btn-7 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100px;
+  height: 40px;
+  border: none;
+  padding: 0px 20px;
+  background-color:  rgb(33,4,114);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 5px 5px 0px rgb(45, 5, 153,);
+  transition-duration: .3s;
+  margin-top:20px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.svg-p {
+  width: 13px;
+  position: absolute;
+  right: 0;
+  margin-right: 20px;
+  fill: white;
+  transition-duration: .3s;
+}
+
+.Btn-7:hover {
+  color: transparent;
+}
+
+.Btn-7:hover svg {
+  right: 43%;
+  margin: 0;
+  padding: 0;
+  border: none;
+  transition-duration: .3s;
+}
+
+.Btn-7:active {
+  transform: translate(3px , 3px);
+  transition-duration: .3s;
+  box-shadow: 2px 2px 0px rgba(45, 5, 153,1);
+}
+.Btn-7, {
+margin-top: 20px;
+margin-left: 50px;
+margin-bottom: 20px;
+}
+.buttons-1-7{
+ display: flex;
+  align-items: center;
+
+ }

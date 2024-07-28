@@ -547,10 +547,14 @@ pre code {
 
 .container {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+
   margin-right: auto;
-  margin-left: auto;
+  margin-left: 150px;;
+}
+.container-s{
+  width: 100%;
+  margin-right: auto;
+  margin-left: 50px;;
 }
 
 @media (min-width: 576px) {
@@ -590,8 +594,8 @@ pre code {
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
+  margin-left: -55px;
+
 }
 
 .no-gutters {
@@ -4191,6 +4195,7 @@ input[type="button"].btn-block {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+
 }
 
 .navbar-nav .nav-link {
@@ -4216,6 +4221,8 @@ input[type="button"].btn-block {
   flex-grow: 1;
   -ms-flex-align: center;
   align-items: center;
+  justify-content:center;
+  margin-left: 0px;
 }
 
 .navbar-toggler {

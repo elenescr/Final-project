@@ -5,6 +5,7 @@
 @media (max-width: 992px) {
   .hero_area {
     min-height: auto;
+    width: 100%
   }
 
   .custom_nav-container .navbar-nav {

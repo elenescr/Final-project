@@ -24,131 +24,23 @@
     box-sizing: border-box;
  }
 
- .Btn-7 {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100px;
-  height: 40px;
-  border: none;
-  padding: 0px 20px;
-  background-color:  rgb(58, 4, 139);
-  color: white;
-  font-weight: 500;
-  cursor: pointer;
-  border-radius: 10px;
-  box-shadow: 5px 5px 0px rgb(140, 32, 212);
-  transition-duration: .3s;
-  margin-top:110px;
-  margin-left: 20px;
-}
 
-.svg {
-  width: 13px;
-  position: absolute;
-  right: 0;
-  margin-right: 20px;
-  fill: white;
-  transition-duration: .3s;
-}
-
-.Btn-7:hover {
-  color: transparent;
-}
-
-.Btn-7:hover svg {
-  right: 43%;
-  margin: 0;
-  padding: 0;
-  border: none;
-  transition-duration: .3s;
-}
-
-.Btn-7:active {
-  transform: translate(3px , 3px);
-  transition-duration: .3s;
-  box-shadow: 2px 2px 0px rgb(140, 32, 212);
-}
-.button-1 {
-  position: relative;
-  width: 150px;
-  height: 40px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  border: 1px solid rgb(40, 8, 129);
-  background-color: rgb(40, 8, 129);
-  border-radius: 10%;
-}
-
-.button-1, .button__icon, .button__text {
-  transition: all 0.3s;
-   border-radius: 10%;
-}
-
-.button-1 .button__text {
-  transform: translateX(30px);
-  color: #fff;
-  font-weight: 600;
-}
-
-.button-1 .button__icon {
-  position: absolute;
-  transform: translateX(109px);
-  height: 100%;
-  width: 39px;
-  background-color: rgb(40, 8, 129);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.button-1 .svg {
-  width: 30px;
-  stroke: #fff;
-}
-
-.button-1:hover {
-  background: rgb(40, 8, 129);
-}
-
-.button-1:hover .button__text {
-  color: transparent;
-}
-
-.button-1:hover .button__icon {
-  width: 148px;
-  transform: translateX(0);
-}
-
-.button-1:active .button__icon {
-  background-color: rgb(62, 22, 172);
-}
-
-.button-1:active {
-  border: 1px solid rgb(62, 22, 172);
-}
-.Btn-7, .button-1{
-margin-top: 110px;
-margin-left: 50px;
-}
-.buttons{
- display: flex;}
 </style>
-<div class="buttons">
+<div class="buttons-1-7">
     <a href="{% url 'update_user'%}" style="text-decoration:none">
     <button class="Btn-7">Edit
-      <svg class="svg" viewBox="0 0 512 512">
+      <svg class="svg-p" viewBox="0 0 512 512">
         <path d="M410.3 231l11.3-11.3-33.9-33.9-62.1-62.1L291.7 89.8l-11.3 11.3-22.6 22.6L58.6 322.9c-10.4 10.4-18 23.3-22.2 37.4L1 480.7c-2.5 8.4-.2 17.5 6.1 23.7s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L387.7 253.7 410.3 231zM160 399.4l-9.1 22.7c-4 3.1-8.5 5.4-13.3 6.9L59.4 452l23-78.1c1.4-4.9 3.8-9.4 6.9-13.3l22.7-9.1v32c0 8.8 7.2 16 16 16h32zM362.7 18.7L348.3 33.2 325.7 55.8 314.3 67.1l33.9 33.9 62.1 62.1 33.9 33.9 11.3-11.3 22.6-22.6 14.5-14.5c25-25 25-65.5 0-90.5L453.3 18.7c-25-25-65.5-25-90.5 0zm-47.4 168l-144 144c-6.2 6.2-16.4 6.2-22.6 0s-6.2-16.4 0-22.6l144-144c6.2-6.2 16.4-6.2 22.6 0s6.2 16.4 0 22.6z"></path></svg>
     </button>
 </a>
+
 <a href="{%url 'add'%}" style="text-decoration:none">
-    <button type="button" class="button-1" >
-  <span class="button__text">Add Item</span>
-  <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+   <button class="cssbuttons-io-button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg>
+  <span>Add</span>
 </button>
 </a>
+
  </div>
 
 
@@ -170,9 +62,9 @@ margin-left: 50px;
   </ul>
   <div class="card-body-2">
 
-    <a href="{% url 'about'  item.id %}" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;"> See More</button></a>
+    <a href="{% url 'about'  item.id %}" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;  margin-top: 8px;"> See More</button></a>
      {% if request.user == item.creator%}
-      <a href="{% url 'delete_item' item.id %}" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;"> Delete </button></a>
+      <a href="{% url 'delete_item' item.id %}" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none; margin-top: 8px;"> Delete </button></a>
     {% endif %}
   </div>
        </div>

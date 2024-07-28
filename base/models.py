@@ -33,6 +33,7 @@ class State(models.Model):
     item = models.ForeignKey(Items, on_delete=models.CASCADE)  # Example: CASCADE deletes related states when an item is deleted
 
 class User(AbstractUser):
+    username = models.CharField(max_length=6, unique=True)
     items = models.ManyToManyField(Items, blank=True, related_name="users_items")  # Adjusted related_name to avoid clash
     avatar = models.ImageField(null=True, default='avatar.svg')
 class Comment(models.Model):

@@ -16,11 +16,18 @@ def home (request):
     categories = Category.objects.all()
     seeder_func()
     context = {"items" : items, "subcats":subcats,"categories":categories}
-    return render(request,'base/home.html', context)
+    if request.GET.get('q') != None:
+        return render(request, 'base/product.html', context)
+    else:
+        return render(request,'base/home.html', context)
 def account(request):
     items= Items.objects.all()
     context = {"items": items}
     return render(request,'base/account.html', context)
+
+def contact(request):
+
+    return render(request,'base/contact.html')
 @login_required(login_url='login')
 def favourites (request, pk):
     user= User.objects.get(id= int(pk))

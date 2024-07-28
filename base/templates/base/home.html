@@ -1,8 +1,9 @@
 {% extends 'main.html'%}
 {% block title %} <title> Home page </title> {% endblock %}
 {% block content%}
-
 {% load static %}
+
+
  <section class="slider_section ">
 
             <div class="slider_bg_box">
@@ -11,7 +12,7 @@
             <div id="customCarousel1" class="carousel slide" data-ride="carousel">
                <div class="carousel-inner">
                   <div class="carousel-item active">
-                     <div class="container ">
+                     <div class="container-s">
                         <div class="row">
                            <div class="col-md-7 col-lg-6 ">
                               <div class="detail-box">
@@ -27,7 +28,7 @@
                                     Discover hidden gems & reduce waste – all on one treasure hunt.
                                  </p>
                                  <div class="btn-box">
-                                    <a href="product.html" class="btn1">
+                                    <a href="{% url 'product' %}" class="btn1">
                                     Shop Now
                                     </a>
                                  </div>
@@ -38,7 +39,7 @@
                   </div>
 
                    <div class="carousel-item ">
-                     <div class="container ">
+                     <div class="container-s ">
                         <div class="row">
                            <div class="col-md-7 col-lg-6 ">
                               <div class="detail-box">
@@ -55,7 +56,8 @@
                                     Unleash your unique style with a treasure hunt for the extraordinary.
                                  </p>
                                  <div class="btn-box">
-                                    <a href="product.html" class="btn1">
+                                    <a href="{% static 'product'%}" class="btn1">
+
                                     Shop Now
                                     </a>
                                  </div>
@@ -67,7 +69,7 @@
 
                   <div class="carousel-item ">
 
-                     <div class="container ">
+                     <div class="container-s">
                         <div class="row">
                            <div class="col-md-7 col-lg-6 ">
                               <div class="detail-box">
@@ -83,7 +85,7 @@
                                     Be kind to the planet, one find at a time.
                                  </p>
                                  <div class="btn-box" >
-                                    <a href="product.html" class="btn1" >
+                                    <a href="{% url 'product' %}" ccdlass="btn1" >
                                     Shop Now
                                     </a>
                                  </div>
@@ -104,7 +106,7 @@
          </section>
 {% if not request.user.is_authenticated %}
       <!-- why section -->
-      <section class="why_section layout_padding">
+      <section class="why_section layout_padding" style="align-self:center">
          <div class="container">
             <div class="heading_container heading_center">
                <h2>
@@ -169,6 +171,72 @@
       </section>
 {% endif %}
 <!-- end why section -->
-{% include 'base/products.html' %}
+{% if request.user.is_authenticated%}
+<a href="{%url 'add'%}" style="text-decoration:none">
+   <button class="cssbuttons-io-button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg>
+  <span>Add</span>
+</button>
+</a>
+
+{% endif %}
+ {% with item_count=items|length %}
+                {% if item_count > 6%}
+<section class="product_section layout_padding">
+         <div class="container">
+            <div class="heading_container heading_center">
+               <h2>
+                  Our <span>products</span>
+               </h2>
+            </div>
+            <div class="row">
+                {% for item in items|slice:":6" %}
+               <div class="col-sm-6 col-md-4 col-lg-4">
+                  <div class="box">
+                     <div class="option_container">
+                        <div class="options">
+                           <a  href="{% url 'about'  item.id %}" class="option1">
+                           See details
+                           </a>
+                            {% if request.user.is_authenticated %}
+                               {% if item not in request.user.items.all %}
+                           <a  href=" {% url 'adding' item.id %}" class="option2">
+                           Add to favourites
+                           </a>
+                             {% endif %}
+                               {% endif %}
+                        </div>
+                     </div>
+                     <div class="img-box">
+                        <img  src="{{item.image.url }}" alt="">
+                     </div>
+                     <div class="detail-box">
+                        <h5>
+                           {{item.name}}
+                        </h5>
+
+                        <h6>
+                           {{item.price}}
+                        </h6>
+                     </div>
+                  </div>
+               </div>
+
+           {% endfor %}
+                {%else%}
+                {% include 'base/products.html'%}
+                {%endif%}
+                {%endwith%}
+              </div>
+          </div>
+        </section>
+
+<section class="product_section layout_padding">
+         <div class="btn-box">
+               <a href="{% url 'product'%}">
+               View All products
+               </a>
+    </div>
+        </section>
 
    {%endblock%}

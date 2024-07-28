@@ -21,7 +21,8 @@
 
 
 <body>
-  <script src="{% static 'js/jquery-3.4.1.min.js'%}"></script>
+<div>
+    <script src="{% static 'js/jquery-3.4.1.min.js'%}"></script>
       <!-- popper js -->
       <script src="{% static 'js/popper.min.js'%}"></script>
       <!-- bootstrap js -->
@@ -29,9 +30,11 @@
       <!-- custom js -->
       <script src="{% static 'js/custom.js'%}"></script>
 
+</div>
 
 
-<!--  {% include 'navbar.html' %}-->
+
+  {% include 'navbar.html' %}
 
 
 {% if messages %}
@@ -53,6 +56,6 @@
     {% endblock %}
 
 
-
+  {% include 'footer.html' %}
 </body>
 </html>
