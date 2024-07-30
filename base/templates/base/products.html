@@ -1,10 +1,48 @@
 {% block content%}
 {% load static %}
 
+<style>
+    .page{
+  display: flex;
+ padding-right: 20px;
+}
 
+.categories{
+  width: 20%;
+  background-color: #f0f0f0;
+  padding: 20px;
+   display: flex;
+  flex-direction: column;
+   margin-top:35px;
+   border-radius:10px;
+   box-shadow: 3px 1px rgba(200, 200, 200, 0.5);
+   margin-left:10px
+}
+.categories hr {
+    width: 100%;
+    height: 1px; /* Adjust the thickness of the line as needed */
+    border: none;
+    background-color: #ccc; /* Adjust the color of the line as needed */
+    margin-bottom: 2px;
+    margin-top:5px;
+}
+.product_section{
+  width: 80%;
 
-     <section class="product_section layout_padding" style="align-self: center">
-         <div class="container">
+}
+</style>
+<div class="page">
+   <div class="categories">
+    <a style="text-decoration:none; color:rgb(17, 1, 59); margin-top: 5px" href="{% url 'product'%}"> <b>All Categories</b>  </a>
+      <hr>
+
+    {% for subcat in subcats%}
+             <a style="text-decoration:none; color:rgb(17, 1, 59); margin-top: 5px" href="{{ request.path }}?q={{subcat.name}}"> <b>{{subcat}}</b>  </a>
+            {%endfor%}
+
+</div>
+     <section class="product_section layout_padding" >
+         <div class="container" style="margin-left: 60px;padding-right: 40px;">
             <div class="heading_container heading_center">
                <h2>
                   Our <span>products</span>
@@ -48,5 +86,7 @@
           </div>
 
         </section>
+
+</div>
 
    {%endblock%}

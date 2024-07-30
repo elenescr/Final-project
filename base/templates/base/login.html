@@ -8,7 +8,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  background-color: #240046;
+  background-color: rgb(17, 1, 59);
   max-height: 500px;
   overflow: hidden;
   border-radius: 12px;
@@ -71,7 +71,7 @@ label {
 }
 
 .register label {
-  color: #573b8a;
+  color: rgb(33,4,114);
   transform: scale(.8);
 }
 
@@ -90,11 +90,11 @@ label {
 }
 /*Button*/
 .form button {
-  width: 85%;
+  width: 40%;
   height: 40px;
   margin: 12px auto 10%;
-  color: #fff;
-  background: #573b8a;
+  color: rgb(33,4,114);
+  background: rgb(219, 219, 219);
   font-size: 1rem;
   font-weight: bold;
   border: none;
@@ -104,10 +104,11 @@ label {
 }
 
 .form button:hover {
-  background-color: #6d44b8;
+  background-color: rgb(33,4,114);
+  color:  rgb(219, 219, 219);
 }
 </style>
-<body>
+
 <div class="main">
 		<input type="checkbox" id="chk" aria-hidden="true">
 
@@ -124,7 +125,7 @@ label {
       <div class="register">
 				<form class="form">
 					<label for="chk" aria-hidden="true">Have not signed up yet?</label>
-					<button> <a href="{% url 'register' %}" style="text-decoration:none; color:white"> Register </a> </button>
+					<button style="background-color: rgb(33,4,114)"> <a href="{% url 'register' %}" style="text-decoration:none; color:white"> Register </a> </button>
 
 				</form>
 			</div>
@@ -132,7 +133,7 @@ label {
 
 
 
-</body>
+
 
 
 

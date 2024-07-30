@@ -1,9 +1,9 @@
-<!--{% load static %}-->
-<!--<link href="{% static 'styles/style1.css'%}" rel="stylesheet">-->
+{% load static %}
+<link href="{% static 'styles/style1.css'%}" rel="stylesheet">
 
-<!--<div >-->
-<!--    {% for subcat in subcats%}-->
-<!--             <a style="text-decoration:none; color:black" href="{{ request.path }}?q={{subcat.name}}"> {{subcat}} </a>-->
-<!--            {%endfor%}-->
-<!--</div>-->
+<div >
+    {% for subcat in subcats%}
+             <a style="text-decoration:none; color:black" href="{{ request.path }}?q={{subcat.name}}"> {{subcat}} </a>
+            {%endfor%}
+</div>
 

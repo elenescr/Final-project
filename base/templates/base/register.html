@@ -6,13 +6,14 @@
 
 /* registrtion css */
        .form-1{
- background-color: #240046;
+ background-color: rgb(17, 1, 59);
   border-radius: 20px;
   box-sizing: border-box;
   height: 550px;
   padding: 20px;
-    width:35%;
+   width:35%;
    margin-left:425px;
+   margin-top:15px;
 }
 
 .title {
@@ -103,8 +104,8 @@
 }
 
 .submit {
-   color: #fff;
-  background: #573b8a;
+   color: rgb(33,4,114);
+  background: rgb(219, 219, 219) ;
   border-radius: 12px;
   border: 0;
   box-sizing: border-box;
@@ -113,11 +114,14 @@
   height: 50px;
   margin-top: 38px;
   text-align: center;
-  width: 100%;
+  width: 60%;
+  margin-left: 90px;
+
 }
 
 .submit:active {
-  background-color: #06b;
+  background-color: rgb(33,4,114);
+  color:  rgb(219, 219, 219);
 }
 .form-1  a{
   margin: 12px auto 10%;
@@ -130,7 +134,7 @@
 }
 
 .form-1  a:hover {
-  background-color: #6d44b8;
+  background-color: rgb(33,4,114);
   border-radius: 5px;
 }
 .form-1 p{
@@ -144,7 +148,7 @@ color : white;
             {% csrf_token %}
 
        <div class="form-1" >
-      <div class="subtitle">Let's create your account!</div>
+      <div class="subtitle"> <h3>Let's create your account! </h3></div>
 
       <div class="input-container ic1">
           <h6 style="color:white"> Username </h6>
@@ -160,7 +164,7 @@ color : white;
            <h6 style="color:white;  margin-top:50px"> repeat password </h6>
         {{ form.password2 }}
        </div>
-      <button  type="submit" value="Register" class="submit" style=" margin-top:80px">submit</button>
+      <button  type="submit" value="Register" class="submit" style=" margin-top:80px"> <b> submit</b></button>
            <hr>
             <p> Already signed up? </p>
            <a href="{% url 'login' %}"> Log In </a>

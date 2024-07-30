@@ -1,65 +1,106 @@
 {% extends 'main.html'%}
 {% block title%} <title> Update </title> {%endblock%}
 {% block content %}
-   <style>
-       .main-container{
-
-       margin-left:20px
-       }
-   back-b: {
- display: flex;
- height: 3em;
- width: 100px;
- align-items: center;
- justify-content: center;
- background-color: #eeeeee4b;
- border-radius: 3px;
- letter-spacing: 1px;
- transition: all 0.2s linear;
- cursor: pointer;
- border: none;
- background: #fff;
+<style>
+/* General styling for the main container */
+.main-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #240046;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-back-b: > svg {
- margin-right: 5px;
- margin-left: 5px;
- font-size: 20px;
- transition: all 0.4s ease-in;
+/* Styling the back button */
+.back-b {
+    display: inline-flex;
+    align-items: center;
+    background-color:  #573b8a;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
-back-b::hover > svg {
- font-size: 1.2em;
- transform: translateX(-5px);
+.back-b svg {
+    margin-right: 8px;
 }
 
-back-b:hover {
- box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #ffffff;
- transform: translateY(-2px);
+/* Styling the form */
+.update-form {
+    display: flex;
+    flex-direction: column;
 }
-   </style>
 
-<!--? login code\-->
+/* Styling form groups */
+.form-group {
+    margin-bottom: 20px;
+    color:white;
+}
+.form-group a {
+  text-decoration: none;
+  color: white;
+}
+
+/* Styling form labels */
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Styling form fields */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+/* Styling the submit button */
+.submit-btn {
+    padding: 10px 20px;
+    background-color:  #573b8a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    width: 60%;
+    align-self: center;
+}
+
+.submit-btn:hover {
+    background-color: white;
+    color:  #49018de1;
+}
+</style>
     <div class="main-container">
         <a href="{{request.META.HTTP_REFERER}}">
-        <button class="back-b">
-  <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024"><path d="M874.690416 495.52477c0 11.2973-9.168824 20.466124-20.466124 20.466124l-604.773963 0 188.083679 188.083679c7.992021 7.992021 7.992021 20.947078 0 28.939099-4.001127 3.990894-9.240455 5.996574-14.46955 5.996574-5.239328 0-10.478655-1.995447-14.479783-5.996574l-223.00912-223.00912c-3.837398-3.837398-5.996574-9.046027-5.996574-14.46955 0-5.433756 2.159176-10.632151 5.996574-14.46955l223.019353-223.029586c7.992021-7.992021 20.957311-7.992021 28.949332 0 7.992021 8.002254 7.992021 20.957311 0 28.949332l-188.073446 188.073446 604.753497 0C865.521592 475.058646 874.690416 484.217237 874.690416 495.52477z"></path></svg>
-  <span>Back</span>
-</button>
+            <button class="back-b">
+                <span>Back</span>
+            </button>
         </a>
-        <form method="POST" action="" enctype="multipart/form-data">
+        <form method="POST" action="" enctype="multipart/form-data" class="update-form">
             {% csrf_token %}
-        {%for field in form %}
-            <div>
-                <label>{{field.label}}</label>
-                <br>
-                {{field}}
-                <br>
-                <hr>
-            </div>
-          {% endfor %}
-            <button type="submit"> Submit </button>
+            {% for field in form %}
+                <div class="form-group">
+                    <label>{{ field.label }}</label>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <button type="submit" class="submit-btn">Submit</button>
         </form>
-
     </div>
 {% endblock %}

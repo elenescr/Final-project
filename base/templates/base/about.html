@@ -144,6 +144,7 @@ border-width : 1px;
 border-radius:10px;
 padding: 10px 400px 10px 25px;
 margin-left: 50px;
+width: 80%
 }
 .text-box {
   width: 100%;
@@ -271,7 +272,9 @@ opacity: 1; /* Ensure full visibility */
 .tooltip:hover .tooltiptext {
  visibility: visible;
 }
-
+#sub{
+margin-top:10px;
+}
 </style>
 
 
@@ -282,10 +285,21 @@ opacity: 1; /* Ensure full visibility */
   </div>
   <div class="product-details">
     <h2>{{item.name}}</h2>
+      <hr>
     <p><strong>Colour:</strong> {{item.colour}}</p>
     <p><strong>Size:</strong> {{item.size}}</p>
     <p><strong>Price:</strong> {{item.price}}</p>
     <p><strong>Description:</strong> {{item.description}}</p>
+       {% if request.user.is_authenticated %}
+                               {% if item not in request.user.items.all %}
+      <button id="sub" class="btn btn-secondary" style="background-color:rgb(17, 1, 59)">
+           <a  href=" {% url 'adding' item.id %}" class="option2" style="text-decoration:none; color: white">
+                           Add to favourites
+                           </a>
+      </button>
+
+                             {% endif %}
+                               {% endif %}
   </div>
 </div>
 <br>
