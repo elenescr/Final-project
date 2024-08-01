@@ -96,29 +96,15 @@ def register_page(request):
  context = {'form':form}
  if request.user.is_authenticated:
       return redirect('home')
-  # if request.method == 'POST':
-  #     username= request.POST.get('username')
-  #     password = request.POST.get('password')
-  #     try:
-  #         user= User.objects.get (username=username)
-  #     except:
-  #         messages.error(request,"This username doesn't exist!")
-  #     user = authenticate(request, username=username, password=password)
-  #     if user is not None:
-  #         login(request, user)
-  #         return redirect('home')
-  #     else:
-  #         messages.error(request, "This username or password is incorrect!")
+
  if request.method == 'POST':
      form = MyUserCreationForm(request.POST)
-     try:
-         len(password1) >= 8
-     except:
-         messages.error(request, "password length is less than 8 characters!")
+
      if form.is_valid():
          user= form.save()
          login(request,user)
          return redirect('home')
+
  return render(request, 'base/register.html', context )
 
 
