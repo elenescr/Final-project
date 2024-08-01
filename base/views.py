@@ -5,7 +5,7 @@ from .models import User, Subcat, Category, Comment
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import MyUserCreationForm, ItemForm, UserForm
+from .forms import MyUserCreationForm, ItemForm, UserForm, ContactForm
 from .seeder import seeder_func
 from django.contrib import messages
 def home (request):
@@ -94,8 +94,27 @@ def logout_user(request):
 def register_page(request):
  form = MyUserCreationForm()
  context = {'form':form}
+ if request.user.is_authenticated:
+      return redirect('home')
+  # if request.method == 'POST':
+  #     username= request.POST.get('username')
+  #     password = request.POST.get('password')
+  #     try:
+  #         user= User.objects.get (username=username)
+  #     except:
+  #         messages.error(request,"This username doesn't exist!")
+  #     user = authenticate(request, username=username, password=password)
+  #     if user is not None:
+  #         login(request, user)
+  #         return redirect('home')
+  #     else:
+  #         messages.error(request, "This username or password is incorrect!")
  if request.method == 'POST':
      form = MyUserCreationForm(request.POST)
+     try:
+         len(password1) >= 8
+     except:
+         messages.error(request, "password length is less than 8 characters!")
      if form.is_valid():
          user= form.save()
          login(request,user)
@@ -104,10 +123,8 @@ def register_page(request):
 
 
 def add_item(request):
-    form = ItemForm()  #
-
-    items = Items.objects.all()  #
-
+    form = ItemForm()
+    items = Items.objects.all()
     if request.method == 'POST':
         form = ItemForm(request.POST, request.FILES)
         if form.is_valid():
@@ -157,3 +174,32 @@ def delete_comment(request, id) :
         comment.delete()
         return redirect('about', item.id)
     return render(request, 'base/delete.html', {'obj': comment})
+
+@login_required(login_url='login')
+def update_item(request, item_id):
+    item = get_object_or_404(Items, id=item_id)
+    form = ItemForm(instance=item)
+    if request.method =='POST':
+        form = ItemForm(request.POST, request.FILES, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('account')
+    return render(request, 'base/update_item.html',{'form':form})
+
+def contact_view (request):
+    if request.method =='POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('success')
+    else:
+        form = ContactForm()
+    return render(request, 'base/contact.html',{'form':form})
+
+def success(request):
+
+    return render(request,'base/success.html')
+# def check() :
+#     item = Items.objects.filter(id=1).first()
+#     print(item)
+# check()

@@ -36,6 +36,7 @@ class User(AbstractUser):
     username = models.CharField(max_length=6, unique=True)
     items = models.ManyToManyField(Items, blank=True, related_name="users_items")  # Adjusted related_name to avoid clash
     avatar = models.ImageField(null=True, default='avatar.svg')
+
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     item = models.ForeignKey(Items, on_delete=models.CASCADE)
@@ -46,3 +47,6 @@ class Comment(models.Model):
     def __str__(self):
         return self.body
 
+class Contact (models.Model):
+    user_email = models.CharField(max_length=50)
+    message = models.TextField(max_length=500)

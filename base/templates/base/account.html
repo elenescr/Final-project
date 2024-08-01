@@ -48,8 +48,8 @@
 
   {% for item in items%}
   {% if request.user == item.creator %}
-       <div class="card" style="width: 18rem;">
-           <img src="{{item.image.url }}" class="card-img-top" alt="..." style="width: 17rem; height:250px;   object-fit: cover;margin-right:20px; margin-top:5px">
+       <div class="card" style="width: 18rem; margin-left:10px;">
+           <img src="{{item.image.url }}" class="card-img-top" alt="..." style="width: 15rem; height:250px;   object-fit: cover;margin-right:20px; margin-top:5px">
 
 
   <div class="card-body">
@@ -60,12 +60,14 @@
     <li class="list-group-item">Price: {{item.price}}</li>
     <li class="list-group-item">Size: {{item.size}} </li>
   </ul>
-  <div class="card-body-2">
-
-    <a href="{% url 'about'  item.id %}" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;  margin-top: 8px;"> See More</button></a>
-     {% if request.user == item.creator%}
-      <a href="{% url 'delete_item' item.id %}" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none; margin-top: 8px;"> Delete </button></a>
+  <div class="card-body-2" style="margin-top: 5px; margin-right: 20px;">
+ {% if request.user == item.creator%}
+      <a href="{% url 'delete_item' item.id %}" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(219, 219, 219); color:rgb(17, 1, 59) ; border: none; margin-top: 8px;"> Delete </button></a>
+      <a href="{% url 'update_item' item.id %}" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(219, 219, 219);color:rgb(17, 1, 59) ; border: none; margin-top: 8px;"> Edit </button></a>
     {% endif %}
+    <a href="{% url 'about'  item.id %}" class="card-link"> <button type="button" class="btn btn-primary" style="background-color: rgb(62, 22, 172) ; border: none;  margin-top: 8px;margin-right:18px;"> See More</button></a>
+
+
   </div>
        </div>
   {% endif %}

@@ -1,0 +1,106 @@
+{% extends 'main.html'%}
+{% block title%} <title> Update </title> {%endblock%}
+{% block content %}
+<style>
+/* General styling for the main container */
+.main-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #240046;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling the back button */
+.back-b {
+    display: inline-flex;
+    align-items: center;
+    background-color:  #573b8a;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.back-b svg {
+    margin-right: 8px;
+}
+
+/* Styling the form */
+.update-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Styling form groups */
+.form-group {
+    margin-bottom: 20px;
+    color:white;
+}
+.form-group a {
+  text-decoration: none;
+  color: white;
+}
+
+/* Styling form labels */
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Styling form fields */
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+/* Styling the submit button */
+.submit-btn {
+    padding: 10px 20px;
+    background-color:  #573b8a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    width: 60%;
+    align-self: center;
+}
+
+.submit-btn:hover {
+    background-color: white;
+    color:  #49018de1;
+}
+</style>
+    <div class="main-container">
+        <a href="{{request.META.HTTP_REFERER}}">
+            <button class="back-b">
+                <span>Back</span>
+            </button>
+        </a>
+        <form method="POST" action="" enctype="multipart/form-data" class="update-form">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group" >
+                    <label>{{ field.label }}</label>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,6 +1,4 @@
 {% extends 'main.html'%}
-
-
 {% block content %}
 <style>
 .form {
@@ -27,24 +25,9 @@
   display: flex;
 
 }
-
-.form .input-1 {
-  outline: 0;
-  border: 1px solid rgb(219, 213, 213);
-  padding: 8px 14px;
-  border-radius: 8px;
-  width: 100%;
-  height: 50px;
-}
-
-.form textarea {
-  border-radius: 8px;
-  height: 100px;
-  width: 100%;
-  resize: none;
-  outline: 0;
-  padding: 8px 14px;
-  border: 1px solid rgb(219, 213, 213);
+.form h6{
+display: flex;
+align-self: flex-start;
 }
 
 .form button {
@@ -59,13 +42,22 @@
   color: rgb(33,4,114);
   cursor: pointer;
 }
+.form input {
+border-radius: 5px;
+}
+.form textarea {
+border-radius: 5px;
+}
 </style>
 
-<form class="form">
+<form class="form" method="POST">
+    {% csrf_token %}
     <div class="title">Contact us</div>
-    <input type="text" placeholder="Your email" class="input-1">
-    <textarea placeholder="Your message"></textarea>
+     <h6 style="color:white"> Your Email: </h6>
+    {{form.user_email}}
+     <h6 style="color:white"> Your Message: </h6>
+    {{form.message}}
 
-    <button>Submit</button>
+    <button type="submit">Submit</button>
 </form>
 {% endblock %}
