@@ -595,7 +595,7 @@ pre code {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin-left: -55px;
-
+flex-direction: row-reverse;
 }
 
 .no-gutters {

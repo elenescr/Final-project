@@ -20,4 +20,5 @@ path ('update_user/', views.update_user, name= 'update_user'),
 path ('delete_comment/<int:id>/', views.delete_comment, name= 'delete_comment'),
 path ('update_item/<int:item_id>/', views.update_item, name= 'update_item'),
 path ('success/', views.success, name= 'success'),
+
 ]

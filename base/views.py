@@ -8,6 +8,10 @@ from django.contrib.auth.decorators import login_required
 from .forms import MyUserCreationForm, ItemForm, UserForm, ContactForm
 from .seeder import seeder_func
 from django.contrib import messages
+
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
+from django.shortcuts import get_object_or_404
 def home (request):
 
     q = request.GET.get('q') if request.GET.get('q') != None else ""
@@ -15,7 +19,7 @@ def home (request):
     subcats = Subcat.objects.all()
     categories = Category.objects.all()
     seeder_func()
-    context = {"items" : items, "subcats":subcats,"categories":categories}
+    context = {"items" : items, "subcats":subcats,"categories":categories, 'q' : q}
     if request.GET.get('q') != None:
         return render(request, 'base/product.html', context)
     else:
@@ -63,7 +67,8 @@ def adding(request, id):
     item = Items.objects.get(id=id)
     user = request.user
     user.items.add(item)
-    return redirect("home")
+    return redirect("product")
+
 
 def delete(request, id):
     item = Items.objects.get(id=id)
@@ -136,7 +141,6 @@ def delete_item(request, id) :
     item = get_object_or_404(Items, id=id)
 
     if request.method == 'POST':
-
         item.image.delete()
         item.delete()
         return redirect('home')
@@ -155,11 +159,13 @@ def update_user(request):
 
 
 def delete_comment(request, id) :
-    comment =Comment.objects.get(id=id)
+    print('reached delete cooment')
+    comment = Comment.objects.get(id=id)
     item= comment.item
     if request.method == 'POST':
-
+        print('reached post request')
         comment.delete()
+        print('deleted')
         return redirect('about', item.id)
     return render(request, 'base/delete.html', {'obj': comment})
 
