@@ -21,7 +21,9 @@ def home (request):
     else:
         return render(request,'base/home.html', context)
 def account(request):
-    items= Items.objects.all()
+    q = request.GET.get('q') if request.GET.get('q') != None else ""
+    items = Items.objects.filter(Q(name__icontains=q) | Q(description__icontains=q) | Q(subcat__name__icontains=q))
+
     context = {"items": items}
     return render(request,'base/account.html', context)
 

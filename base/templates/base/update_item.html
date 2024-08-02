@@ -85,6 +85,15 @@
     background-color: white;
     color:  #49018de1;
 }
+#image-clear_id{
+display: none;
+}
+label[for="image-clear_id"] {
+    color: #240046;
+    height: 0px;
+<!--    display: none;-->
+}
+
 </style>
     <div class="main-container">
         <a href="{{request.META.HTTP_REFERER}}">
@@ -96,8 +105,10 @@
             {% csrf_token %}
             {% for field in form %}
                 <div class="form-group" >
+
                     <label>{{ field.label }}</label>
-                    {{ field }}
+                     {{ field }}
+
                 </div>
             {% endfor %}
             <button type="submit" class="submit-btn">Submit</button>
