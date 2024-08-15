@@ -66,7 +66,7 @@ def adding(request, id):
     item = Items.objects.get(id=id)
     user = request.user
     user.items.add(item)
-    return redirect("product")
+    return redirect('favourites', request.user.id)
 
 
 def delete(request, id):
@@ -188,6 +188,9 @@ def contact_view (request):
     else:
         form = ContactForm()
     return render(request, 'base/contact.html',{'form':form})
+
+def info_view (request):
+    return render(request, 'base/info.html')
 
 def success(request):
 

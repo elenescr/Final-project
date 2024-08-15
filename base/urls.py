@@ -5,6 +5,7 @@ urlpatterns = [
 path('', views.home, name= 'home'),
 path ('account/', views.account, name= 'account'),
 path ('contact/', views.contact_view, name= 'contact'),
+path ('info/', views.info_view, name= 'info'),
 path ('favourites/<str:pk>/', views.favourites, name= 'favourites'),
 path ('product/', views.product, name= 'product'),
 path ('about/<str:id>', views.about, name= 'about'),
