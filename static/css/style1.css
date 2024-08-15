@@ -278,7 +278,7 @@ a:focus {
   margin-top:30px;
 }
 
-.slider_section .row {
+.slider_section .row .row-1 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -387,7 +387,7 @@ a:focus {
     position: relative;
     margin-top: 25px;
     padding: 35px 35px;
-    background-color: #f7f8f9;
+    background-color: rgb(240,240,240);
     -webkit-transition: all .3s;
     transition: all .3s;
     overflow: hidden;

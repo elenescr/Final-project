@@ -1,19 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-class Subcat(models.Model):
-    name = models.CharField(max_length=30)
-
-    def __str__(self):
-        return self.name
 
 class Category(models.Model):
     name = models.CharField(max_length=30)
-    subcats = models.ManyToManyField(Subcat, blank=True, related_name="categories")
-
     def __str__(self):
         return self.name
-
+class Subcat(models.Model):
+    name = models.CharField(max_length=30)
+    category = models.ForeignKey(Category, related_name='subcategories', on_delete=models.CASCADE)
+    def __str__(self):
+        return self.name
 class Items(models.Model):
     creator = models.ForeignKey('User', on_delete=models.SET_NULL, null=True, blank=True, related_name="created_items")
     name = models.CharField(max_length=30)
