@@ -8,12 +8,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ks2aeb5zf8+3)c)x$=njyaqv@-y+brafh$x*1ce3qacb!0c$6a'
-
+# SECRET_KEY = 'django-insecure-ks2aeb5zf8+3)c)x$=njyaqv@-y+brafh$x*1ce3qacb!0c$6a'
+SECRET_KEY = os.environ.get(SECRET_KEY)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['wornwell-1ea90524d62a.herokuapp.com']
 
 AUTH_USER_MODEL= 'base.User'
 # Application definition
